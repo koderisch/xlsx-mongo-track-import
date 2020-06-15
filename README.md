@@ -8,11 +8,9 @@ run `npm install` to install the required packages
 
 ## Database setup
 
-The script is configured to use a MongoDB database running on localhost.
+The script is configured to use a MongoDB database named `tracksDb`, running on localhost.
 
-### Database name:
-
-- `tracksDb`
+To use a different database connection set `DB_URI` in `.env` to the desired database URI.
 
 ### Collections
 
@@ -31,4 +29,18 @@ or
 
 ```
 node app.js --input={{inputFile}}
+```
+
+Use the `--clear` switch to empty the collections before importing the data.
+
+E.g.
+
+```
+npm start -- --input={{inputFile}} --clear=true
+```
+
+or
+
+```
+node app.js --input={{inputFile}} --clear=true
 ```

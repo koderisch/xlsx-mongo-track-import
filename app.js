@@ -19,11 +19,23 @@ const argv = yargs
     type: 'string',
     demand: true,
   })
+  .option('clear', {
+    alias: 'c',
+    description: 'Clear collections before import',
+    type: 'boolean',
+  })
   .alias('help', 'h').argv;
 
 const INPUT_FILE = argv.input;
+const CLEAR_COLLECTIONS = argv.clear;
+console.log(CLEAR_COLLECTIONS);
 
 const processItems = async () => {
+  if (CLEAR_COLLECTIONS) {
+    await Contract.deleteMany({});
+    await Track.deleteMany({});
+  }
+
   const newContract = new Contract({ Name: 'Contract 1' });
   await newContract.save();
 
